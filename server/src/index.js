@@ -4,6 +4,7 @@ const { dbConnect } = require("./config/dbConfig");
 
 const PORT = process.env.PORT || 4000;
 
+// connecting database
 dbConnect()
   .then(() => {
     app.listen(PORT, () =>
