@@ -8,6 +8,7 @@ import { useState } from "react";
 import { userValidationSchema } from "../../utils/validations";
 import axiosInstance from "../../api/axiosInstance";
 import { useNavigate } from "react-router-dom";
+import { useToast } from "../../context/ToastContext";
 
 const CreateUser = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -15,6 +16,16 @@ const CreateUser = () => {
   const closeModal = () => setIsModalOpen(false);
   const setUsername = useSetRecoilState(userDetails);
   const navigate = useNavigate();
+
+  const { showToast } = useToast();
+
+  const handleSuccess = (message) => {
+    showToast(message, true);
+  };
+
+  const handleFailure = (message) => {
+    showToast(message, false);
+  };
 
   // creating user
   const handleCreateUser = async ({ username }) => {
@@ -24,10 +35,12 @@ const CreateUser = () => {
       });
       if (response.data.success) {
         setUsername(response.data.data);
+        handleSuccess(response.data.message);
         navigate("/projects");
       }
     } catch (err) {
       console.log(err);
+      handleFailure(err.message);
     }
   };
 
