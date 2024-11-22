@@ -1,5 +1,7 @@
+import RoutesComp from "./Routes";
+
 function App() {
-  return <div>Hi Akash</div>;
+  return <RoutesComp />;
 }
 
 export default App;
