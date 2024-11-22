@@ -35,18 +35,17 @@ const RoutesComp = () => {
       <Routes>
         {routes.map((route, index) => {
           // Protected routes
-          // if (route.protected) {
-          //   return user._id ? (
-          //     <Route key={index} path={route.path} element={route.element} />
-          //   )
-          //   : (
-          //     <Route
-          //       key={index}
-          //       path={route.path}
-          //       element={<Navigate to="/" />}
-          //     />
-          //   );
-          // }
+          if (route.protected) {
+            return user._id ? (
+              <Route key={index} path={route.path} element={route.element} />
+            ) : (
+              <Route
+                key={index}
+                path={route.path}
+                element={<Navigate to="/" />}
+              />
+            );
+          }
           return (
             <Route key={index} path={route.path} element={route.element} />
           );
