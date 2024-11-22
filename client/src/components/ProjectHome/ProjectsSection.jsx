@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import CreateProject from "../Landing/CreateProject";
 import { Project } from "../Project";
 import axiosInstance from "../../api/axiosInstance";
@@ -10,6 +10,7 @@ import { v4 as uuid } from "uuid";
 export const ProjectsSection = () => {
   const [projects, setProjects] = useRecoilState(userProjects);
   const user = useRecoilValue(userDetails);
+  const [loading, setLoading] = useState(true); // Add loading state
 
   const handleGetProjects = async () => {
     try {
@@ -21,6 +22,8 @@ export const ProjectsSection = () => {
       }
     } catch (err) {
       console.log(err);
+    } finally {
+      setLoading(false); // Hide loader after fetching
     }
   };
 
@@ -35,7 +38,11 @@ export const ProjectsSection = () => {
         <CreateProject />
       </div>
       <div className="flex flex-col md:flex-row items-center justify-start flex-wrap gap-8 px-0 md:px-20">
-        {projects.length > 0 ? (
+        {loading ? ( // Show loader while fetching
+          <div className="w-full text-center text-2xl text-black/80 font-semibold pt-10">
+            Loading projects...
+          </div>
+        ) : projects.length > 0 ? (
           projects?.map((item) => {
             return <Project key={uuid()} item={item} />;
           })

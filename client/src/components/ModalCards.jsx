@@ -10,6 +10,7 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { currentProject, files, userDetails } from "../recoil/atoms";
 import axiosInstance from "../api/axiosInstance";
 import { IoMdNotificationsOutline } from "react-icons/io";
+import { useToast } from "../context/ToastContext";
 
 export const ComingSoonSidebar = ({ children }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -107,6 +108,15 @@ export const UploadFile = ({ children }) => {
   const setFiles = useSetRecoilState(files);
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+  const { showToast } = useToast();
+
+  const handleSuccess = (message) => {
+    showToast(message, true);
+  };
+
+  const handleFailure = (message) => {
+    showToast(message, false);
+  };
 
   const handleCreateFile = async ({ name, transcript }) => {
     try {
@@ -118,9 +128,10 @@ export const UploadFile = ({ children }) => {
       });
       if (response.data.success) {
         getFiles();
-        console.log("Hello data fetching");
+        handleSuccess(response.data.message);
       }
     } catch (err) {
+      handleFailure(err.message);
       console.log(err);
     }
   };
@@ -224,6 +235,16 @@ export const UploadFile2 = ({ children }) => {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
+  const { showToast } = useToast();
+
+  const handleSuccess = (message) => {
+    showToast(message, true);
+  };
+
+  const handleFailure = (message) => {
+    showToast(message, false);
+  };
+
   const handleCreateFile = async ({ name, transcript }) => {
     try {
       const response = await axiosInstance.post(apiRoutes.createFile, {
@@ -235,9 +256,11 @@ export const UploadFile2 = ({ children }) => {
       console.log(response.data.data);
       if (response.data.success) {
         getFiles();
+        handleSuccess(response.data.message);
       }
     } catch (err) {
       console.log(err);
+      handleFailure(err.message);
     }
   };
 

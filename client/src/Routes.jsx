@@ -3,6 +3,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import Loader from "./components/common/Loader";
 import { userDetails } from "./recoil/atoms";
+import { ToastProvider } from "./context/ToastContext";
 
 // Lazy load the components
 const Home = lazy(() => import("./pages/Home"));
@@ -32,25 +33,27 @@ const RoutesComp = () => {
 
   return (
     <Suspense fallback={<Loader />}>
-      <Routes>
-        {routes.map((route, index) => {
-          // Protected routes
-          if (route.protected) {
-            return user._id ? (
+      <ToastProvider>
+        <Routes>
+          {routes.map((route, index) => {
+            // Protected routes
+            if (route.protected) {
+              return user._id ? (
+                <Route key={index} path={route.path} element={route.element} />
+              ) : (
+                <Route
+                  key={index}
+                  path={route.path}
+                  element={<Navigate to="/" />}
+                />
+              );
+            }
+            return (
               <Route key={index} path={route.path} element={route.element} />
-            ) : (
-              <Route
-                key={index}
-                path={route.path}
-                element={<Navigate to="/" />}
-              />
             );
-          }
-          return (
-            <Route key={index} path={route.path} element={route.element} />
-          );
-        })}
-      </Routes>
+          })}
+        </Routes>
+      </ToastProvider>
     </Suspense>
   );
 };

@@ -28,7 +28,7 @@ export const Project = ({ item }) => {
         handleGetFiles(item);
         setProject(item._id);
       }}
-      className="xl:w-1/5 flex items-center justify-start border-2 pl-2 pr-6 py-3 gap-4 border-gray-200 rounded-xl cursor-pointer group hover:bg-gray-50 transition-all duration-500 ease-in-out"
+      className="min-w-[280px] xl:min-w-[300px] flex items-center justify-start border-2 pl-2 pr-6 py-3 gap-4 border-gray-200 rounded-xl cursor-pointer group hover:bg-gray-50 transition-all duration-500 ease-in-out"
     >
       <div className="text-white">
         <div className="bg-yellow-300 w-fit text-3xl py-5 px-6 rounded-xl">

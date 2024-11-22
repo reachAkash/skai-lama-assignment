@@ -8,6 +8,7 @@ import {
 } from "../recoil/atoms";
 import { apiRoutes } from "../api/apiRoutes";
 import axiosInstance from "../api/axiosInstance";
+import { useToast } from "../context/ToastContext";
 
 export const FilesList = ({ filesData }) => {
   const setCurrentFile = useSetRecoilState(currentFile);
@@ -26,6 +27,16 @@ export const FilesList = ({ filesData }) => {
     const minutes = date.getMinutes().toString().padStart(2, "0");
 
     return `${day} ${month} ${year} | ${hours}:${minutes}`;
+  };
+
+  const { showToast } = useToast();
+
+  const handleSuccess = (message) => {
+    showToast(message, true);
+  };
+
+  const handleFailure = (message) => {
+    showToast(message, false);
   };
 
   // set viewing file
@@ -58,23 +69,26 @@ export const FilesList = ({ filesData }) => {
       );
       console.log(response);
       if (response.data.success) {
+        handleSuccess(response.data.message);
         handleGetFiles();
       } else {
+        handleSuccess("Failed to update transcript");
         console.error("Failed to update transcript");
       }
     } catch (error) {
+      handleSuccess(error.message);
       console.error("Error updating transcript: ", error);
     }
   };
 
   return (
-    <div className="bg-white shadow-md rounded-md text-center space-y-4 px-8 xl:px-20 py-8 transition-all ease-in-out overflow-scroll w-[18rem] sm:w-full h-[22rem]">
+    <div className="bg-white shadow-md rounded-md text-center space-y-4 px-8 xl:px-20 py-8 transition-all ease-in-out h-[22rem] group">
       <div className="text-[#1D1929] text-lg text-start font-semibold">
         Your Files
       </div>
 
       {/* Wrapping the table in a div with horizontal scrolling */}
-      <div className="overflow-x-auto">
+      <div className="overflow-scroll group-hover:scrollbar w-1 min-w-full h-[15rem]">
         <table className="w-full border-collapse border-spacing-0 text-center">
           <thead>
             <tr className="bg-gray-100">
