@@ -10,7 +10,7 @@ const Sidebar = () => {
   const { username } = useRecoilValue(userDetails);
 
   return (
-    <div className="bg-white px-6 py-10 flex flex-col items-center justify-between h-screen">
+    <div className="hidden xl:flex flex-col items-center justify-between bg-white px-6 py-10 h-screen">
       <div className="space-y-6">
         <div>
           <Link to="/">

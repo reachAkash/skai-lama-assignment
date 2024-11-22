@@ -13,7 +13,7 @@ const MainLayout = () => {
     // inner screen layout
     <div className="flex h-screen">
       <Sidebar />
-      <div className="flex-1 bg-[#f9f9f9] py-10 px-16 space-y-6">
+      <div className="flex-1 bg-[#f9f9f9] py-10 px-10 xl:px-16 space-y-6 h-fit xl:h-full">
         <Navbar />
         {currFile._id ? <ViewFile /> : <ProjectPage />}
       </div>

@@ -9,7 +9,7 @@ const NavbarHome = () => {
   const user = useRecoilValue(userDetails);
   // For outer screens
   return (
-    <div className="flex items-center justify-between px-24">
+    <div className="flex items-center justify-between px-6 md:px-24">
       <div className="">
         <Link to="/">
           <img className="w-2/3" src={Logo} alt="logo" />

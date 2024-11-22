@@ -4,7 +4,7 @@ import HeroSection from "../components/Landing/HeroSection";
 const Home = () => {
   return (
     // Landing Screen
-    <div className="h-screen space-y-10 py-6">
+    <div className="space-y-20 lg:space-y-10 py-6">
       <NavbarHome />
       <HeroSection />
     </div>

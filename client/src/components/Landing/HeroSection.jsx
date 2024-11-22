@@ -10,12 +10,17 @@ const HeroSection = () => {
       <div className="flex items-center justify-center">
         <img src={HeroImage} alt="hero image" />
       </div>
-      <p className="text-[#838383]">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore <Wordbreak /> magna aliqua. Ut
-        enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-        aliquip ex ea <Wordbreak />
-        commodo consequat. Duis aute irure dolor in reprehenderit in
+      <p className="text-[#838383] px-14 lg:px-0">
+        <span>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore <Wordbreak /> magna
+          aliqua. Ut enim ad minim veniam
+        </span>{" "}
+        <span className="hidden md:block">
+          ,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea{" "}
+          <Wordbreak />
+          commodo consequat. Duis aute irure dolor in reprehenderit in
+        </span>
       </p>
       {/* Create Account */}
       <CreateUser />

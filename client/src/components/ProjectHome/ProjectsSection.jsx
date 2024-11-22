@@ -30,11 +30,11 @@ export const ProjectsSection = () => {
 
   return (
     <div className="space-y-8">
-      <div className="flex items-center justify-between px-24">
+      <div className="flex items-center justify-between px-6 md:px-24">
         <div className="text-primary text-2xl font-bold">Projects</div>
         <CreateProject />
       </div>
-      <div className="flex items-center justify-start flex-wrap gap-8 px-20">
+      <div className="flex flex-col md:flex-row items-center justify-start flex-wrap gap-8 px-0 md:px-20">
         {projects.length > 0 ? (
           projects?.map((item) => {
             return <Project key={uuid()} item={item} />;

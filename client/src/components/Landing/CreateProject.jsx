@@ -53,7 +53,7 @@ const CreateProject = () => {
         className="flex items-center justify-center m-auto bg-secondary hover:bg-white border border-secondary hover:text-secondary text-white px-4 py-2 rounded-md gap-1 duration-300"
       >
         <IoAddCircleOutline className="text-2xl" />
-        Create New Project
+        <span className="hidden md:block">Create</span> New Project
       </button>
       <Modal isOpen={isModalOpen} onClose={closeModal}>
         <h2 className="text-xl font-semibold mb-4">Create Project</h2>

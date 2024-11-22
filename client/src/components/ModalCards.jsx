@@ -56,7 +56,7 @@ export const ComingSoonModal = ({ children }) => {
 export const UploadPodcastCard = ({ item, idx }) => {
   return (
     <UploadFile2>
-      <div className="bg-white flex items-center justify-between shadow-md rounded-md px-4 py-6 cursor-pointer transition-all ease-in-out duration-500 hover:scale-[1.02]">
+      <div className="bg-white max-w-[380px] lg:max-w-[400px] flex items-center justify-between shadow-md rounded-md px-4 py-6 cursor-pointer transition-all ease-in-out duration-500 hover:scale-[1.02]">
         <div className="space-y-1">
           <div className="font-semibold text-2xl text-[#1D1929]">
             {item?.title}
@@ -73,7 +73,7 @@ export const UploadPodcastCard = ({ item, idx }) => {
 
 export const UploadPodcastCard2 = () => {
   return (
-    <div className="bg-white shadow-md rounded-md text-center space-y-4 py-8 transition-all ease-in-out">
+    <div className="bg-white shadow-md rounded-md text-center space-y-4 px-4 py-8 transition-all ease-in-out">
       <div className="flex items-center justify-center">
         <img src={cloudImage} alt="upload image" />
       </div>

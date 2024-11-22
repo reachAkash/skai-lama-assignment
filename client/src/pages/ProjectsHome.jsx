@@ -4,7 +4,7 @@ import ProjectsSection from "../components/ProjectHome/ProjectsSection";
 const ProjectsHome = () => {
   return (
     // Project Listing Screen
-    <div className="h-screen space-y-10 py-6">
+    <div className="space-y-10 py-6">
       <NavbarHome />
       <ProjectsSection />
     </div>
